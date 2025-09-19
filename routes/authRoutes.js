@@ -9,15 +9,15 @@ const { sendOtp, verifyOtp, signin, login, searchUsername } = require('../contro
 const { validateEmail } = require('../validators/emailValidators');
 
 // Route to send OTP
-router.post('/send-otp', sendOtp);
+router.post('/send-otp', wrapAsync(sendOtp));
 // Route to verify OTP
-router.post('/verify-otp', validateEmail, verifyOtp);
+router.post('/verify-otp', validateEmail, wrapAsync(verifyOtp));
 
-router.post('/register', validateEmail, signin);
-router.post('/login', validateEmail, login);
+router.post('/register', validateEmail, wrapAsync(signin));
+router.post('/login', validateEmail, wrapAsync(login));
 
 
 // routes/auth.js
-router.get("/user-availability", searchUsername);
+router.get("/user-availability", wrapAsync(searchUsername));
 
 module.exports = router;
