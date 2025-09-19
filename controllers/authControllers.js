@@ -7,6 +7,7 @@ const User = require('../models/User');
 require('dotenv').config();
 
 
+
 const sendOtp = async(req, res)=>{
     const { email } = req.body;
 
@@ -26,10 +27,10 @@ const sendOtp = async(req, res)=>{
       return res.status(500).json({ message: "Error sending OTP" });
     }
 
-    res.status(200).json({ message: "OTP sent successfully" });
+    res.status(200).json({status:"success", message: "OTP sent successfully" });
   } catch (err) {
     console.error("Error in sendOtp:", err);
-    res.status(500).json({ error: "Unexpected error while sending OTP" });
+    res.status(500).json({ status: "error", error: "Unexpected error while sending OTP" });
   }
 }
 

@@ -2,11 +2,11 @@ const express= require('express');
 const router = express.Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-
 const redis = require('../utils/upstash_otp_store');
 require('dotenv').config();
 const { sendOtp, verifyOtp, signin, login, searchUsername } = require('../controllers/authControllers');
 const { validateEmail } = require('../validators/emailValidators');
+const wrapAsync = require('../utils/wrapAsync');
 
 // Route to send OTP
 router.post('/send-otp', wrapAsync(sendOtp));
